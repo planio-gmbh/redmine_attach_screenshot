@@ -2,6 +2,7 @@ require 'redmine'
 require 'dispatcher'
 require 'application_patch'
 require 'cleanup_tmp'
+require 'attach_screenshot/hooks'
 
 require_dependency 'attachment_hook'
 

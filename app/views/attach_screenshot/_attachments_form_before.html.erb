@@ -1,0 +1,4 @@
+<% content_for :header_tags do %>
+    <%= stylesheet_link_tag 'attach_screenshot', :plugin => 'redmine_attach_screenshot' %>
+    <%= javascript_include_tag 'attach_screenshot', :plugin => 'redmine_attach_screenshot' %>
+<% end if @issue %>
