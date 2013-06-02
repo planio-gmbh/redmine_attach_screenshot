@@ -25,10 +25,14 @@ class AttachScreenshotController < ApplicationController
         render :inline => "<%= @fname %>"
     else
       @fname = params[:id];
-      send_file(File.join(SCREENSHOTS_PATH, @fname),
-                :disposition => 'inline',
-                :type => 'image/png',
-                :filename => "screenshot.png");
+      if @fname.match(/\A\d+_\w+\.\w+\z/)
+        send_file(File.join(SCREENSHOTS_PATH, @fname),
+                  :disposition => 'inline',
+                  :type => 'image/png',
+                  :filename => "screenshot.png");
+      else
+        render_403
+      end
     end
   end
 
