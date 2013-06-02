@@ -19,7 +19,7 @@ module AttachmentHook
           def file.init(name)
             @screenshot_name = name
           end
-          
+
           def file.content_type
             "image/png"
           end

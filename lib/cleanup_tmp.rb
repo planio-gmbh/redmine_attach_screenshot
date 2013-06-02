@@ -20,7 +20,7 @@ module AttachScreenshotPlugin
       end
     end
 
-    def self.cleanup      
+    def self.cleanup
       ss = sprintf('%d_', User.current.id)
       Find.find("#{RAILS_ROOT}/tmp/") do |f|
         if (f[ss]!=nil)
