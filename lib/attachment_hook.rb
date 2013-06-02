@@ -13,7 +13,7 @@ module AttachmentHook
       if screenshots && screenshots.is_a?(Hash)
         screenshots.each_pair do |key, screenshot|
           key  = key.gsub("thumb", "screenshot")
-          path = "#{RAILS_ROOT}/tmp/" + key
+          path = File.join(AttachScreenshotController::SCREENSHOTS_PATH, key)
           file = File.open(path, "rb")
 
           def file.init(name)
@@ -43,7 +43,7 @@ module AttachmentHook
           file.close()
           File.delete(path)
           key  = key.gsub("screenshot", "thumb")
-          path = "#{RAILS_ROOT}/tmp/" + key
+          path = File.join(AttachScreenshotController::SCREENSHOTS_PATH, key)
           begin
             File.delete(path)
           rescue
