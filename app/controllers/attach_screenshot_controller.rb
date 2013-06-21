@@ -7,7 +7,11 @@ class AttachScreenshotController < ApplicationController
   accept_rss_auth :index
 
   # maybe replace with config entry?
-  SCREENSHOTS_PATH = File.join(RAILS_ROOT, 'tmp', 'attach_screenshot')
+  if defined?(::RedmineTenantable) && RedmineTenantable.tenant.present?
+    SCREENSHOTS_PATH = FileUtils.makedirs(File.join(Dir.tmpdir, "planio", RedmineTenantable.tenant, "redmine_attach_screenshot"), :mode => 0700)
+  else
+    SCREENSHOTS_PATH = FileUtils.makedirs(File.join(Dir.tmpdir, "planio", "redmine_attach_screenshot"), :mode => 0700)
+  end
 
   def index
     if request.post?
