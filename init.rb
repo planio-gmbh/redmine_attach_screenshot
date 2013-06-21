@@ -1,6 +1,5 @@
 require 'redmine'
 require 'dispatcher'
-require 'application_patch'
 require 'cleanup_tmp'
 require 'attach_screenshot/hooks'
 
@@ -15,6 +14,5 @@ Redmine::Plugin.register :redmine_attach_screenshot do
 end
 
 Dispatcher.to_prepare do
-  ApplicationController.send(:include, AttachScreenshotPlugin::ApplicationControllerPatch)
   AccountController.send(:include, AttachScreenshotPlugin::CleanupTmp)
 end
